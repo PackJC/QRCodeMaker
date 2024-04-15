@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "pJDLiuq9lAsYFti+nohBWIaOF8z+t0l9PBkhDkPVDbxtWSB8ODAs07P81qzZsCe1JzZj5zMbCSXAkhInIMdpEg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\JPack\\source\\repos\\QRCodeMaker\\QRCodeMaker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JPack\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\JPack\\.nuget\\packages\\qrcoder\\1.4.3\\qrcoder.1.4.3.nupkg.sha512",
+    "C:\\Users\\JPack\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

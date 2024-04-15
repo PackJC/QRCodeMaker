@@ -2,13 +2,36 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.22621.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>qr-code-fill.ico</ApplicationIcon>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryType>git</RepositoryType>
+    <Company>Great Smoky Software</Company>
+    <Description>A Windows application designed for QR code generation offers users a convenient and interactive interface to create customized QR codes directly from their desktop. The application's core functionality centers around generating QR codes that encode various types of information, such as URLs, text messages, contact information, or any other string data the user wishes to convert into a QR code format.
+</Description>
+    <Copyright>Johnny Pack © 2024</Copyright>
+    <PackageProjectUrl>https://github.com/PackJC/QRCodeMaker</PackageProjectUrl>
+    <PackageIcon>qr-code-fill.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/PackJC/QRCodeMaker</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="qr-code-fill.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Desktop\qr-code-fill.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="QRCoder" Version="1.4.3" />
   </ItemGroup>
 
@@ -18,6 +41,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +53,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

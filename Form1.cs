@@ -1,14 +1,28 @@
+using Newtonsoft.Json;
 using QRCoder;
+using System.Diagnostics;
 using System.Drawing.Imaging;
+using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace QRCodeMaker
 {
     public partial class Form1 : Form
     {
+
+        private readonly Version _version = Assembly.GetExecutingAssembly().GetName().Version;
+        private string currentVersion;
+        private string repoOwner = "packjc"; // Replace with your GitHub username
+        private string repoName = "QRCodeMaker"; // Replace with your repository name
+        private string logo;
+        Color qrCodeColor = Color.Black; // Default color
+
         public Form1()
         {
             InitializeComponent();
+            currentVersion = _version.ToString();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -28,6 +42,8 @@ namespace QRCodeMaker
         private void button1_Click(object sender, EventArgs e)
         {
             string inputString = stringBox.Text;
+            // Assuming qrCodeColor is your user-selected color for the QR code and is defined elsewhere
+
             try
             {
                 using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
@@ -35,14 +51,30 @@ namespace QRCodeMaker
                     QRCodeData qrCodeData = qrGenerator.CreateQrCode(inputString, QRCodeGenerator.ECCLevel.Q);
                     using (QRCode qrCode = new QRCode(qrCodeData))
                     {
-                        using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
-                        {
-                            // Debug: Verify the bitmap can be saved - you can remove this line if it works
-                            //qrCodeImage.Save("test_qr.png"); // If this works without error, the Bitmap is fine
+                        Bitmap qrCodeImage = null;
 
-                            qrCodeBox.Image?.Dispose(); // Dispose any existing image to avoid memory leaks
-                            qrCodeBox.Image = (Bitmap)qrCodeImage.Clone(); // Clone and assign the Bitmap to PictureBox
+                        // Check if a logo has been selected and loaded into pictureBoxLogo
+                        if (logoPictureBox.Image != null)
+                        {
+                            // Assuming pictureBoxLogo contains the logo
+                            Bitmap logoImage = new Bitmap(logoPictureBox.Image);
+
+                            // Generate QR code with logo. Adjust logo size ratio as needed.
+                            qrCodeImage = qrCode.GetGraphic(20, qrCodeColor, Color.White, logoImage, 15);
                         }
+                        else
+                        {
+                            // Generate QR code without a logo, but with custom color
+                            qrCodeImage = qrCode.GetGraphic(20, qrCodeColor, Color.White, true);
+                        }
+
+                        // Ensure previous QR code image is disposed
+                        if (qrCodeBox.Image != null)
+                        {
+                            qrCodeBox.Image.Dispose(); // Dispose directly as we're going to replace it immediately
+                        }
+
+                        qrCodeBox.Image = qrCodeImage; // Assign the newly created QR code image
                     }
                 }
             }
@@ -107,6 +139,75 @@ namespace QRCodeMaker
             var aboutForm = new AboutBox1();
             aboutForm.Show();
 
+        }
+
+        private void checkForUpdatesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string latestReleaseUrl = $"https://api.github.com/repos/{repoOwner}/{repoName}/releases/latest";
+            string json;
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("User-Agent", "request"); // GitHub API requires a user-agent
+                json = wc.DownloadString(latestReleaseUrl);
+            }
+
+            var release = JsonConvert.DeserializeObject<dynamic>(json);
+            string latestVersion = release.tag_name;
+            string downloadUrl = release.assets[0].browser_download_url;
+
+            if (Version.Parse(latestVersion) > Version.Parse(currentVersion))
+            {
+                if (MessageBox.Show($"Update available: {latestVersion}\nDo you want to download it?", "Update Available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Process.Start(new ProcessStartInfo(downloadUrl) { UseShellExecute = true });
+                }
+            }
+            else
+            {
+                MessageBox.Show("Your application is up to date.");
+            }
+
+        }
+
+        private void btnChangeColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.AllowFullOpen = true;
+            cd.Color = colorPanel.BackColor;
+            cd.FullOpen = true;
+            cd.AnyColor = true;
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                colorPanel.BackColor = cd.Color;
+                qrCodeColor = cd.Color;
+            }
+        }
+
+        private void btnUploadLogo_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a logo";
+                openFileDialog.Filter = "Image files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Load and display the selected image in the PictureBox
+                    logoPictureBox.ImageLocation = openFileDialog.FileName;
+                }
+            }
+
+        }
+
+        private void clearLogoButton_Click(object sender, EventArgs e)
+        {
+            // Check if there's currently an image displayed in the pictureBoxLogo
+            if (logoPictureBox.Image != null)
+            {
+                logoPictureBox.Image.Dispose(); // Dispose the image to free resources
+                logoPictureBox.Image = null; // Remove the image from the PictureBox
+            }
         }
     }
 }

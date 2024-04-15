@@ -38,8 +38,14 @@
             checkForUpdatesToolStripMenuItem = new ToolStripMenuItem();
             checkForUpdatesToolStripMenuItem1 = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
+            colorPanel = new Panel();
+            btnChangeColor = new Button();
+            btnUploadLogo = new Button();
+            logoPictureBox = new PictureBox();
+            clearLogoButton = new Button();
             ((System.ComponentModel.ISupportInitialize)qrCodeBox).BeginInit();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
             SuspendLayout();
             // 
             // stringBox
@@ -49,8 +55,8 @@
             stringBox.Location = new Point(25, 25);
             stringBox.Multiline = true;
             stringBox.Name = "stringBox";
-            stringBox.Size = new Size(250, 300);
-            stringBox.TabIndex = 2;
+            stringBox.Size = new Size(250, 118);
+            stringBox.TabIndex = 232;
             stringBox.Text = "Enter your text to be put into QR Code";
             stringBox.TextChanged += textBox1_TextChanged;
             stringBox.Enter += textBox1_Enter;
@@ -63,7 +69,7 @@
             createButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(141, 212, 255);
             createButton.FlatStyle = FlatStyle.Flat;
             createButton.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            createButton.Location = new Point(50, 350);
+            createButton.Location = new Point(50, 400);
             createButton.Name = "createButton";
             createButton.Size = new Size(200, 75);
             createButton.TabIndex = 3;
@@ -133,15 +139,66 @@
             // checkForUpdatesToolStripMenuItem1
             // 
             checkForUpdatesToolStripMenuItem1.Name = "checkForUpdatesToolStripMenuItem1";
-            checkForUpdatesToolStripMenuItem1.Size = new Size(180, 22);
+            checkForUpdatesToolStripMenuItem1.Size = new Size(171, 22);
             checkForUpdatesToolStripMenuItem1.Text = "Check for Updates";
+            checkForUpdatesToolStripMenuItem1.Click += checkForUpdatesToolStripMenuItem1_Click;
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Size = new Size(171, 22);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+            // 
+            // colorPanel
+            // 
+            colorPanel.BackColor = Color.White;
+            colorPanel.Location = new Point(25, 170);
+            colorPanel.Name = "colorPanel";
+            colorPanel.Size = new Size(50, 50);
+            colorPanel.TabIndex = 8;
+            // 
+            // btnChangeColor
+            // 
+            btnChangeColor.Location = new Point(81, 170);
+            btnChangeColor.Name = "btnChangeColor";
+            btnChangeColor.Size = new Size(194, 50);
+            btnChangeColor.TabIndex = 9;
+            btnChangeColor.Text = "Change Color";
+            btnChangeColor.UseVisualStyleBackColor = true;
+            btnChangeColor.Click += btnChangeColor_Click;
+            // 
+            // btnUploadLogo
+            // 
+            btnUploadLogo.Location = new Point(152, 245);
+            btnUploadLogo.Name = "btnUploadLogo";
+            btnUploadLogo.Size = new Size(123, 50);
+            btnUploadLogo.TabIndex = 11;
+            btnUploadLogo.Text = "Upload Logo";
+            btnUploadLogo.UseVisualStyleBackColor = true;
+            btnUploadLogo.Click += btnUploadLogo_Click;
+            // 
+            // logoPictureBox
+            // 
+            logoPictureBox.BackColor = Color.White;
+            logoPictureBox.Location = new Point(21, 236);
+            logoPictureBox.Name = "logoPictureBox";
+            logoPictureBox.Size = new Size(125, 125);
+            logoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            logoPictureBox.TabIndex = 0;
+            logoPictureBox.TabStop = false;
+            // 
+            // clearLogoButton
+            // 
+            clearLogoButton.BackColor = Color.Transparent;
+            clearLogoButton.FlatAppearance.BorderColor = Color.White;
+            clearLogoButton.Location = new Point(152, 301);
+            clearLogoButton.Name = "clearLogoButton";
+            clearLogoButton.Size = new Size(123, 50);
+            clearLogoButton.TabIndex = 233;
+            clearLogoButton.Text = "Clear Logo";
+            clearLogoButton.UseVisualStyleBackColor = false;
+            clearLogoButton.Click += clearLogoButton_Click;
             // 
             // Form1
             // 
@@ -149,6 +206,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(784, 517);
+            Controls.Add(clearLogoButton);
+            Controls.Add(logoPictureBox);
+            Controls.Add(btnUploadLogo);
+            Controls.Add(btnChangeColor);
+            Controls.Add(colorPanel);
             Controls.Add(copyButton);
             Controls.Add(downloadButton);
             Controls.Add(qrCodeBox);
@@ -163,6 +225,7 @@
             ((System.ComponentModel.ISupportInitialize)qrCodeBox).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -177,5 +240,10 @@
         private ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private ToolStripMenuItem checkForUpdatesToolStripMenuItem1;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private Panel colorPanel;
+        private Button btnChangeColor;
+        private Button btnUploadLogo;
+        private PictureBox logoPictureBox;
+        private Button clearLogoButton;
     }
 }

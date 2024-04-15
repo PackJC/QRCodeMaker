@@ -13,10 +13,11 @@ namespace QRCodeMaker
 
         private readonly Version _version = Assembly.GetExecutingAssembly().GetName().Version;
         private string currentVersion;
-        private string repoOwner = "packjc"; // Replace with your GitHub username
+        private string repoOwner = "PackJC"; // Replace with your GitHub username
         private string repoName = "QRCodeMaker"; // Replace with your repository name
         private string logo;
         Color qrCodeColor = Color.Black; // Default color
+        Color qrCodeBackgroundColor = Color.White; // Default color
 
         public Form1()
         {
@@ -60,12 +61,12 @@ namespace QRCodeMaker
                             Bitmap logoImage = new Bitmap(logoPictureBox.Image);
 
                             // Generate QR code with logo. Adjust logo size ratio as needed.
-                            qrCodeImage = qrCode.GetGraphic(20, qrCodeColor, Color.White, logoImage, 15);
+                            qrCodeImage = qrCode.GetGraphic(20, qrCodeColor, qrCodeBackgroundColor, logoImage, 15);
                         }
                         else
                         {
                             // Generate QR code without a logo, but with custom color
-                            qrCodeImage = qrCode.GetGraphic(20, qrCodeColor, Color.White, true);
+                            qrCodeImage = qrCode.GetGraphic(20, qrCodeColor, qrCodeBackgroundColor, true);
                         }
 
                         // Ensure previous QR code image is disposed
@@ -207,6 +208,20 @@ namespace QRCodeMaker
             {
                 logoPictureBox.Image.Dispose(); // Dispose the image to free resources
                 logoPictureBox.Image = null; // Remove the image from the PictureBox
+            }
+        }
+
+        private void btnChangeBackgroundColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.AllowFullOpen = true;
+            cd.Color = colorPanel.BackColor;
+            cd.FullOpen = true;
+            cd.AnyColor = true;
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                backgroundColorPanel.BackColor = cd.Color;
+                qrCodeBackgroundColor = cd.Color;
             }
         }
     }

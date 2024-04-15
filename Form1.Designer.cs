@@ -43,6 +43,8 @@
             btnUploadLogo = new Button();
             logoPictureBox = new PictureBox();
             clearLogoButton = new Button();
+            btnChangeBackgroundColor = new Button();
+            backgroundColorPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)qrCodeBox).BeginInit();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
@@ -69,7 +71,7 @@
             createButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(141, 212, 255);
             createButton.FlatStyle = FlatStyle.Flat;
             createButton.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            createButton.Location = new Point(50, 400);
+            createButton.Location = new Point(54, 431);
             createButton.Name = "createButton";
             createButton.Size = new Size(200, 75);
             createButton.TabIndex = 3;
@@ -153,24 +155,24 @@
             // colorPanel
             // 
             colorPanel.BackColor = Color.White;
-            colorPanel.Location = new Point(25, 170);
+            colorPanel.Location = new Point(25, 161);
             colorPanel.Name = "colorPanel";
             colorPanel.Size = new Size(50, 50);
             colorPanel.TabIndex = 8;
             // 
             // btnChangeColor
             // 
-            btnChangeColor.Location = new Point(81, 170);
+            btnChangeColor.Location = new Point(81, 161);
             btnChangeColor.Name = "btnChangeColor";
             btnChangeColor.Size = new Size(194, 50);
             btnChangeColor.TabIndex = 9;
-            btnChangeColor.Text = "Change Color";
+            btnChangeColor.Text = "Change QR Color";
             btnChangeColor.UseVisualStyleBackColor = true;
             btnChangeColor.Click += btnChangeColor_Click;
             // 
             // btnUploadLogo
             // 
-            btnUploadLogo.Location = new Point(152, 245);
+            btnUploadLogo.Location = new Point(156, 305);
             btnUploadLogo.Name = "btnUploadLogo";
             btnUploadLogo.Size = new Size(123, 50);
             btnUploadLogo.TabIndex = 11;
@@ -181,7 +183,7 @@
             // logoPictureBox
             // 
             logoPictureBox.BackColor = Color.White;
-            logoPictureBox.Location = new Point(21, 236);
+            logoPictureBox.Location = new Point(25, 296);
             logoPictureBox.Name = "logoPictureBox";
             logoPictureBox.Size = new Size(125, 125);
             logoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -192,7 +194,7 @@
             // 
             clearLogoButton.BackColor = Color.Transparent;
             clearLogoButton.FlatAppearance.BorderColor = Color.White;
-            clearLogoButton.Location = new Point(152, 301);
+            clearLogoButton.Location = new Point(156, 361);
             clearLogoButton.Name = "clearLogoButton";
             clearLogoButton.Size = new Size(123, 50);
             clearLogoButton.TabIndex = 233;
@@ -200,12 +202,32 @@
             clearLogoButton.UseVisualStyleBackColor = false;
             clearLogoButton.Click += clearLogoButton_Click;
             // 
+            // btnChangeBackgroundColor
+            // 
+            btnChangeBackgroundColor.Location = new Point(81, 230);
+            btnChangeBackgroundColor.Name = "btnChangeBackgroundColor";
+            btnChangeBackgroundColor.Size = new Size(194, 50);
+            btnChangeBackgroundColor.TabIndex = 235;
+            btnChangeBackgroundColor.Text = "Change Background Color";
+            btnChangeBackgroundColor.UseVisualStyleBackColor = true;
+            btnChangeBackgroundColor.Click += btnChangeBackgroundColor_Click;
+            // 
+            // backgroundColorPanel
+            // 
+            backgroundColorPanel.BackColor = Color.White;
+            backgroundColorPanel.Location = new Point(25, 230);
+            backgroundColorPanel.Name = "backgroundColorPanel";
+            backgroundColorPanel.Size = new Size(50, 50);
+            backgroundColorPanel.TabIndex = 234;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(784, 517);
+            Controls.Add(btnChangeBackgroundColor);
+            Controls.Add(backgroundColorPanel);
             Controls.Add(clearLogoButton);
             Controls.Add(logoPictureBox);
             Controls.Add(btnUploadLogo);
@@ -245,5 +267,7 @@
         private Button btnUploadLogo;
         private PictureBox logoPictureBox;
         private Button clearLogoButton;
+        private Button btnChangeBackgroundColor;
+        private Panel backgroundColorPanel;
     }
 }

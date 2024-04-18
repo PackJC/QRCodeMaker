@@ -11,18 +11,26 @@ namespace QRCodeMaker
     public partial class Form1 : Form
     {
 
+#pragma warning disable CS8601 // Possible null reference assignment.
         private readonly Version _version = Assembly.GetExecutingAssembly().GetName().Version;
+#pragma warning restore CS8601 // Possible null reference assignment.
         private string currentVersion;
         private string repoOwner = "PackJC"; // Replace with your GitHub username
         private string repoName = "QRCodeMaker"; // Replace with your repository name
+#pragma warning disable CS0169 // The field 'Form1.logo' is never used
         private string logo;
+#pragma warning restore CS0169 // The field 'Form1.logo' is never used
         Color qrCodeColor = Color.Black; // Default color
         Color qrCodeBackgroundColor = Color.White; // Default color
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Form1()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             InitializeComponent();
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             currentVersion = _version.ToString();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
         }
 
@@ -52,7 +60,9 @@ namespace QRCodeMaker
                     QRCodeData qrCodeData = qrGenerator.CreateQrCode(inputString, QRCodeGenerator.ECCLevel.Q);
                     using (QRCode qrCode = new QRCode(qrCodeData))
                     {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                         Bitmap qrCodeImage = null;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
                         // Check if a logo has been selected and loaded into pictureBoxLogo
                         if (logoPictureBox.Image != null)
@@ -84,6 +94,26 @@ namespace QRCodeMaker
                 MessageBox.Show($"Error generating QR code: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public string CleanFileName(string fileName)
+        {
+            // Remove http:// or https:// from the string
+            string cleanedFileName = fileName.Replace("http://", "").Replace("https://", "");
+
+            // Replace invalid filename characters with underscores
+            char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
+            foreach (char c in invalidChars)
+            {
+                cleanedFileName = cleanedFileName.Replace(c, '_');
+            }
+
+            // Replace multiple consecutive underscores with a single underscore
+            while (cleanedFileName.Contains("__")) // Two underscores
+            {
+                cleanedFileName = cleanedFileName.Replace("__", "_");
+            }
+
+            return cleanedFileName;
+        }
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
@@ -97,7 +127,7 @@ namespace QRCodeMaker
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 // Configure save file dialog box
-                saveFileDialog.FileName = "QRCode_" + stringBox.Text; // Default file name
+                saveFileDialog.FileName = "QRCode_" + CleanFileName(stringBox.Text);
                 saveFileDialog.DefaultExt = ".png"; // Default file extension
                 saveFileDialog.Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*"; // Filter files by extension
 
@@ -154,7 +184,9 @@ namespace QRCodeMaker
             }
 
             var release = JsonConvert.DeserializeObject<dynamic>(json);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             string latestVersion = release.tag_name;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             string downloadUrl = release.assets[0].browser_download_url;
 
             if (Version.Parse(latestVersion) > Version.Parse(currentVersion))

@@ -9,7 +9,7 @@
     <ApplicationIcon>qr-code-fill.ico</ApplicationIcon>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryType>git</RepositoryType>
-    <Company>Great Smoky Software</Company>
+    <Company>Smoky Mountain Software</Company>
     <Description>A Windows application designed for QR code generation offers users a convenient and interactive interface to create customized QR codes directly from their desktop. The application's core functionality centers around generating QR codes that encode various types of information, such as URLs, text messages, contact information, or any other string data the user wishes to convert into a QR code format.
 </Description>
     <Copyright>Johnny Pack © 2024</Copyright>
@@ -17,6 +17,12 @@
     <PackageIcon>qr-code-fill.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/PackJC/QRCodeMaker</RepositoryUrl>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
+    <Version>1.0.0.2</Version>
+    <Product>QR Code Maker</Product>
+    <Authors>PackJC</Authors>
+    <Title>QR Code Maker</Title>
   </PropertyGroup>
 
   <ItemGroup>

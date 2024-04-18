@@ -37,7 +37,9 @@ namespace QRCodeMaker
                         return titleAttribute.Title;
                     }
                 }
+#pragma warning disable CS8603 // Possible null reference return.
                 return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+#pragma warning restore CS8603 // Possible null reference return.
             }
         }
 
@@ -45,7 +47,9 @@ namespace QRCodeMaker
         {
             get
             {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
         }
 

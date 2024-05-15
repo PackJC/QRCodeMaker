@@ -1,10 +1,15 @@
 using Newtonsoft.Json;
 using QRCoder;
+using System;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
+using ZXing;
+using ZXing.QrCode;
+using ZXing.Windows.Compatibility;
+
 
 namespace QRCodeMaker
 {
@@ -97,7 +102,7 @@ namespace QRCodeMaker
         public string CleanFileName(string fileName)
         {
             // Remove http:// or https:// from the string
-            string cleanedFileName = fileName.Replace("http://", "").Replace("https://", "");
+            string cleanedFileName = fileName.Replace("http://", "").Replace("https://", "").Replace(".com", "").Replace(".net", "");
 
             // Replace invalid filename characters with underscores
             char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
@@ -255,6 +260,56 @@ namespace QRCodeMaker
                 backgroundColorPanel.BackColor = cd.Color;
                 qrCodeBackgroundColor = cd.Color;
             }
+        }
+
+        private void uploadImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                DecodeQRCode(openFileDialog.FileName);
+            }
+        }
+
+        private void DecodeQRCode(string imagePath)
+        {
+            var reader = new BarcodeReader
+            {
+                AutoRotate = true,
+                TryInverted = true,
+                Options = new ZXing.Common.DecodingOptions
+                {
+                    PossibleFormats = new[] { ZXing.BarcodeFormat.QR_CODE },
+                    TryHarder = true
+                }
+            };
+
+            using (var bitmap = (Bitmap)Bitmap.FromFile(imagePath))
+            {
+                LuminanceSource source = new BitmapLuminanceSource(bitmap);
+
+                var result = reader.Decode(bitmap);
+                if (result != null)
+                {
+                    MessageBox.Show("QR Code Content: " + result.Text);
+                    qrResultBox.Text = result.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("No QR Code found. Ensure the QR code is clear and well-positioned.");
+                }
+            }
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "Enter your text to be put into QR Code";
+            qrResultBox.Text = "Import a QR Code and the data will be displayed here!";
+            qrCodeBox.Image = null;
+            logoPictureBox.Image = null;
+            backgroundColorPanel.BackColor = Color.White;
+            colorPanel.BackColor = Color.White;
         }
     }
 }

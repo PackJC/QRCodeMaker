@@ -35,6 +35,8 @@
             downloadButton = new Button();
             copyButton = new Button();
             menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            uploadImageToolStripMenuItem = new ToolStripMenuItem();
             checkForUpdatesToolStripMenuItem = new ToolStripMenuItem();
             checkForUpdatesToolStripMenuItem1 = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -45,6 +47,8 @@
             clearLogoButton = new Button();
             btnChangeBackgroundColor = new Button();
             backgroundColorPanel = new Panel();
+            qrResultBox = new TextBox();
+            clearButton = new Button();
             ((System.ComponentModel.ISupportInitialize)qrCodeBox).BeginInit();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
@@ -53,11 +57,11 @@
             // stringBox
             // 
             stringBox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            stringBox.ForeColor = SystemColors.ButtonShadow;
-            stringBox.Location = new Point(25, 25);
+            stringBox.ForeColor = SystemColors.ActiveCaptionText;
+            stringBox.Location = new Point(25, 29);
             stringBox.Multiline = true;
             stringBox.Name = "stringBox";
-            stringBox.Size = new Size(250, 118);
+            stringBox.Size = new Size(319, 60);
             stringBox.TabIndex = 232;
             stringBox.Text = "Enter your text to be put into QR Code";
             stringBox.TextChanged += textBox1_TextChanged;
@@ -71,7 +75,7 @@
             createButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(141, 212, 255);
             createButton.FlatStyle = FlatStyle.Flat;
             createButton.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            createButton.Location = new Point(54, 431);
+            createButton.Location = new Point(12, 433);
             createButton.Name = "createButton";
             createButton.Size = new Size(200, 75);
             createButton.TabIndex = 3;
@@ -82,9 +86,9 @@
             // qrCodeBox
             // 
             qrCodeBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            qrCodeBox.Location = new Point(350, 25);
+            qrCodeBox.Location = new Point(366, 27);
             qrCodeBox.Name = "qrCodeBox";
-            qrCodeBox.Size = new Size(400, 400);
+            qrCodeBox.Size = new Size(406, 400);
             qrCodeBox.SizeMode = PictureBoxSizeMode.StretchImage;
             qrCodeBox.TabIndex = 4;
             qrCodeBox.TabStop = false;
@@ -97,9 +101,9 @@
             downloadButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(191, 217, 191);
             downloadButton.FlatStyle = FlatStyle.Flat;
             downloadButton.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            downloadButton.Location = new Point(350, 431);
+            downloadButton.Location = new Point(366, 433);
             downloadButton.Name = "downloadButton";
-            downloadButton.Size = new Size(190, 75);
+            downloadButton.Size = new Size(200, 75);
             downloadButton.TabIndex = 5;
             downloadButton.Text = "Download";
             downloadButton.UseVisualStyleBackColor = false;
@@ -113,9 +117,9 @@
             copyButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 230, 167);
             copyButton.FlatStyle = FlatStyle.Flat;
             copyButton.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            copyButton.Location = new Point(560, 431);
+            copyButton.Location = new Point(572, 433);
             copyButton.Name = "copyButton";
-            copyButton.Size = new Size(190, 75);
+            copyButton.Size = new Size(200, 75);
             copyButton.TabIndex = 6;
             copyButton.Text = "Copy to Clipboard";
             copyButton.UseVisualStyleBackColor = false;
@@ -123,12 +127,27 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { checkForUpdatesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, checkForUpdatesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(784, 24);
             menuStrip1.TabIndex = 7;
             menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { uploadImageToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // uploadImageToolStripMenuItem
+            // 
+            uploadImageToolStripMenuItem.Image = (Image)resources.GetObject("uploadImageToolStripMenuItem.Image");
+            uploadImageToolStripMenuItem.Name = "uploadImageToolStripMenuItem";
+            uploadImageToolStripMenuItem.Size = new Size(148, 22);
+            uploadImageToolStripMenuItem.Text = "Upload Image";
+            uploadImageToolStripMenuItem.Click += uploadImageToolStripMenuItem_Click;
             // 
             // checkForUpdatesToolStripMenuItem
             // 
@@ -140,6 +159,7 @@
             // 
             // checkForUpdatesToolStripMenuItem1
             // 
+            checkForUpdatesToolStripMenuItem1.Image = (Image)resources.GetObject("checkForUpdatesToolStripMenuItem1.Image");
             checkForUpdatesToolStripMenuItem1.Name = "checkForUpdatesToolStripMenuItem1";
             checkForUpdatesToolStripMenuItem1.Size = new Size(171, 22);
             checkForUpdatesToolStripMenuItem1.Text = "Check for Updates";
@@ -147,6 +167,7 @@
             // 
             // aboutToolStripMenuItem
             // 
+            aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(171, 22);
             aboutToolStripMenuItem.Text = "About";
@@ -164,7 +185,7 @@
             // 
             btnChangeColor.Location = new Point(81, 161);
             btnChangeColor.Name = "btnChangeColor";
-            btnChangeColor.Size = new Size(194, 50);
+            btnChangeColor.Size = new Size(263, 50);
             btnChangeColor.TabIndex = 9;
             btnChangeColor.Text = "Change QR Color";
             btnChangeColor.UseVisualStyleBackColor = true;
@@ -174,7 +195,7 @@
             // 
             btnUploadLogo.Location = new Point(156, 305);
             btnUploadLogo.Name = "btnUploadLogo";
-            btnUploadLogo.Size = new Size(123, 50);
+            btnUploadLogo.Size = new Size(188, 50);
             btnUploadLogo.TabIndex = 11;
             btnUploadLogo.Text = "Upload Logo";
             btnUploadLogo.UseVisualStyleBackColor = true;
@@ -194,9 +215,9 @@
             // 
             clearLogoButton.BackColor = Color.Transparent;
             clearLogoButton.FlatAppearance.BorderColor = Color.White;
-            clearLogoButton.Location = new Point(156, 361);
+            clearLogoButton.Location = new Point(152, 361);
             clearLogoButton.Name = "clearLogoButton";
-            clearLogoButton.Size = new Size(123, 50);
+            clearLogoButton.Size = new Size(192, 50);
             clearLogoButton.TabIndex = 233;
             clearLogoButton.Text = "Clear Logo";
             clearLogoButton.UseVisualStyleBackColor = false;
@@ -206,7 +227,7 @@
             // 
             btnChangeBackgroundColor.Location = new Point(81, 230);
             btnChangeBackgroundColor.Name = "btnChangeBackgroundColor";
-            btnChangeBackgroundColor.Size = new Size(194, 50);
+            btnChangeBackgroundColor.Size = new Size(263, 50);
             btnChangeBackgroundColor.TabIndex = 235;
             btnChangeBackgroundColor.Text = "Change Background Color";
             btnChangeBackgroundColor.UseVisualStyleBackColor = true;
@@ -220,12 +241,43 @@
             backgroundColorPanel.Size = new Size(50, 50);
             backgroundColorPanel.TabIndex = 234;
             // 
+            // qrResultBox
+            // 
+            qrResultBox.BackColor = Color.OldLace;
+            qrResultBox.Enabled = false;
+            qrResultBox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            qrResultBox.ForeColor = SystemColors.ControlDark;
+            qrResultBox.Location = new Point(25, 95);
+            qrResultBox.Multiline = true;
+            qrResultBox.Name = "qrResultBox";
+            qrResultBox.Size = new Size(319, 60);
+            qrResultBox.TabIndex = 236;
+            qrResultBox.Text = "Import a QR Code and the data will be displayed here!";
+            // 
+            // clearButton
+            // 
+            clearButton.BackColor = Color.FromArgb(255, 128, 128);
+            clearButton.FlatAppearance.BorderSize = 0;
+            clearButton.FlatAppearance.MouseDownBackColor = Color.Red;
+            clearButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            clearButton.FlatStyle = FlatStyle.Flat;
+            clearButton.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            clearButton.Location = new Point(218, 433);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(126, 75);
+            clearButton.TabIndex = 237;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = false;
+            clearButton.Click += clearButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(784, 517);
+            Controls.Add(clearButton);
+            Controls.Add(qrResultBox);
             Controls.Add(btnChangeBackgroundColor);
             Controls.Add(backgroundColorPanel);
             Controls.Add(clearLogoButton);
@@ -270,5 +322,9 @@
         private Button clearLogoButton;
         private Button btnChangeBackgroundColor;
         private Panel backgroundColorPanel;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem uploadImageToolStripMenuItem;
+        private TextBox qrResultBox;
+        private Button clearButton;
     }
 }

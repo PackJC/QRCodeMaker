@@ -10,16 +10,17 @@
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryType>git</RepositoryType>
     <Company>Smoky Mountain Software</Company>
-    <Description>A Windows application designed for QR code generation offers users a convenient and interactive interface to create customized QR codes directly from their desktop. The application's core functionality centers around generating QR codes that encode various types of information, such as URLs, text messages, contact information, or any other string data the user wishes to convert into a QR code format.
+    <Description>A convenient and interactive interface to create and read customized QR codes directly from their desktop. The application's core functionality centers around generating QR codes that encode various types of information, such as URLs, text messages, contact information, or any other string data.
+Source Code: https://github.com/PackJC/QRCodeMaker
 </Description>
     <Copyright>Johnny Pack © 2024</Copyright>
     <PackageProjectUrl>https://github.com/PackJC/QRCodeMaker</PackageProjectUrl>
     <PackageIcon>qr-code-fill.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/PackJC/QRCodeMaker</RepositoryUrl>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <FileVersion>1.0.0.2</FileVersion>
-    <Version>1.0.0.2</Version>
+    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <FileVersion>1.0.0.3</FileVersion>
+    <Version>1.0.0.3</Version>
     <Product>QR Code Maker</Product>
     <Authors>PackJC</Authors>
     <Title>QR Code Maker</Title>
@@ -38,7 +39,9 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="QRCoder" Version="1.4.3" />
+    <PackageReference Include="QRCoder" Version="1.5.1" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.12" />
   </ItemGroup>
 
   <ItemGroup>

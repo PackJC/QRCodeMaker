@@ -37,6 +37,19 @@
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             uploadImageToolStripMenuItem = new ToolStripMenuItem();
+            presetsToolStripMenuItem = new ToolStripMenuItem();
+            networksToolStripMenuItem = new ToolStripMenuItem();
+            wPAWPA2ToolStripMenuItem = new ToolStripMenuItem();
+            wEPToolStripMenuItem = new ToolStripMenuItem();
+            hiddenWPAWPA2ToolStripMenuItem = new ToolStripMenuItem();
+            openNetworkToolStripMenuItem = new ToolStripMenuItem();
+            phoneToolStripMenuItem = new ToolStripMenuItem();
+            callToolStripMenuItem = new ToolStripMenuItem();
+            sMSToolStripMenuItem = new ToolStripMenuItem();
+            contactToolStripMenuItem = new ToolStripMenuItem();
+            eventToolStripMenuItem = new ToolStripMenuItem();
+            emailToolStripMenuItem = new ToolStripMenuItem();
+            geoCoordinatesToolStripMenuItem = new ToolStripMenuItem();
             checkForUpdatesToolStripMenuItem = new ToolStripMenuItem();
             checkForUpdatesToolStripMenuItem1 = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -127,7 +140,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, checkForUpdatesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, presetsToolStripMenuItem, checkForUpdatesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(784, 24);
@@ -148,6 +161,97 @@
             uploadImageToolStripMenuItem.Size = new Size(148, 22);
             uploadImageToolStripMenuItem.Text = "Upload Image";
             uploadImageToolStripMenuItem.Click += uploadImageToolStripMenuItem_Click;
+            // 
+            // presetsToolStripMenuItem
+            // 
+            presetsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { networksToolStripMenuItem, phoneToolStripMenuItem, emailToolStripMenuItem, geoCoordinatesToolStripMenuItem });
+            presetsToolStripMenuItem.Name = "presetsToolStripMenuItem";
+            presetsToolStripMenuItem.Size = new Size(56, 20);
+            presetsToolStripMenuItem.Text = "Presets";
+            // 
+            // networksToolStripMenuItem
+            // 
+            networksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { wPAWPA2ToolStripMenuItem, wEPToolStripMenuItem, hiddenWPAWPA2ToolStripMenuItem, openNetworkToolStripMenuItem });
+            networksToolStripMenuItem.Name = "networksToolStripMenuItem";
+            networksToolStripMenuItem.Size = new Size(180, 22);
+            networksToolStripMenuItem.Text = "Networks";
+            // 
+            // wPAWPA2ToolStripMenuItem
+            // 
+            wPAWPA2ToolStripMenuItem.Name = "wPAWPA2ToolStripMenuItem";
+            wPAWPA2ToolStripMenuItem.Size = new Size(180, 22);
+            wPAWPA2ToolStripMenuItem.Text = "WPA/WPA2";
+            wPAWPA2ToolStripMenuItem.Click += wPAWPA2ToolStripMenuItem_Click;
+            // 
+            // wEPToolStripMenuItem
+            // 
+            wEPToolStripMenuItem.Name = "wEPToolStripMenuItem";
+            wEPToolStripMenuItem.Size = new Size(180, 22);
+            wEPToolStripMenuItem.Text = "WEP";
+            wEPToolStripMenuItem.Click += wEPToolStripMenuItem_Click;
+            // 
+            // hiddenWPAWPA2ToolStripMenuItem
+            // 
+            hiddenWPAWPA2ToolStripMenuItem.Name = "hiddenWPAWPA2ToolStripMenuItem";
+            hiddenWPAWPA2ToolStripMenuItem.Size = new Size(180, 22);
+            hiddenWPAWPA2ToolStripMenuItem.Text = "Hidden WPA/WPA2";
+            hiddenWPAWPA2ToolStripMenuItem.Click += hiddenWPAWPA2ToolStripMenuItem_Click;
+            // 
+            // openNetworkToolStripMenuItem
+            // 
+            openNetworkToolStripMenuItem.Name = "openNetworkToolStripMenuItem";
+            openNetworkToolStripMenuItem.Size = new Size(180, 22);
+            openNetworkToolStripMenuItem.Text = "Open Network";
+            openNetworkToolStripMenuItem.Click += openNetworkToolStripMenuItem_Click;
+            // 
+            // phoneToolStripMenuItem
+            // 
+            phoneToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { callToolStripMenuItem, sMSToolStripMenuItem, contactToolStripMenuItem, eventToolStripMenuItem });
+            phoneToolStripMenuItem.Name = "phoneToolStripMenuItem";
+            phoneToolStripMenuItem.Size = new Size(180, 22);
+            phoneToolStripMenuItem.Text = "Phone";
+            // 
+            // callToolStripMenuItem
+            // 
+            callToolStripMenuItem.Name = "callToolStripMenuItem";
+            callToolStripMenuItem.Size = new Size(116, 22);
+            callToolStripMenuItem.Text = " Call";
+            callToolStripMenuItem.Click += callToolStripMenuItem_Click;
+            // 
+            // sMSToolStripMenuItem
+            // 
+            sMSToolStripMenuItem.Name = "sMSToolStripMenuItem";
+            sMSToolStripMenuItem.Size = new Size(116, 22);
+            sMSToolStripMenuItem.Text = "SMS";
+            sMSToolStripMenuItem.Click += sMSToolStripMenuItem_Click;
+            // 
+            // contactToolStripMenuItem
+            // 
+            contactToolStripMenuItem.Name = "contactToolStripMenuItem";
+            contactToolStripMenuItem.Size = new Size(116, 22);
+            contactToolStripMenuItem.Text = "Contact";
+            contactToolStripMenuItem.Click += contactToolStripMenuItem_Click;
+            // 
+            // eventToolStripMenuItem
+            // 
+            eventToolStripMenuItem.Name = "eventToolStripMenuItem";
+            eventToolStripMenuItem.Size = new Size(116, 22);
+            eventToolStripMenuItem.Text = "Event";
+            eventToolStripMenuItem.Click += eventToolStripMenuItem_Click;
+            // 
+            // emailToolStripMenuItem
+            // 
+            emailToolStripMenuItem.Name = "emailToolStripMenuItem";
+            emailToolStripMenuItem.Size = new Size(180, 22);
+            emailToolStripMenuItem.Text = "Email";
+            emailToolStripMenuItem.Click += emailToolStripMenuItem_Click;
+            // 
+            // geoCoordinatesToolStripMenuItem
+            // 
+            geoCoordinatesToolStripMenuItem.Name = "geoCoordinatesToolStripMenuItem";
+            geoCoordinatesToolStripMenuItem.Size = new Size(180, 22);
+            geoCoordinatesToolStripMenuItem.Text = "Geo Coordinates";
+            geoCoordinatesToolStripMenuItem.Click += geoCoordinatesToolStripMenuItem_Click;
             // 
             // checkForUpdatesToolStripMenuItem
             // 
@@ -326,5 +430,18 @@
         private ToolStripMenuItem uploadImageToolStripMenuItem;
         private TextBox qrResultBox;
         private Button clearButton;
+        private ToolStripMenuItem presetsToolStripMenuItem;
+        private ToolStripMenuItem networksToolStripMenuItem;
+        private ToolStripMenuItem wPAWPA2ToolStripMenuItem;
+        private ToolStripMenuItem wEPToolStripMenuItem;
+        private ToolStripMenuItem hiddenWPAWPA2ToolStripMenuItem;
+        private ToolStripMenuItem openNetworkToolStripMenuItem;
+        private ToolStripMenuItem phoneToolStripMenuItem;
+        private ToolStripMenuItem callToolStripMenuItem;
+        private ToolStripMenuItem sMSToolStripMenuItem;
+        private ToolStripMenuItem contactToolStripMenuItem;
+        private ToolStripMenuItem eventToolStripMenuItem;
+        private ToolStripMenuItem emailToolStripMenuItem;
+        private ToolStripMenuItem geoCoordinatesToolStripMenuItem;
     }
 }

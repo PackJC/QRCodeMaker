@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ZXing;
 using ZXing.QrCode;
 using ZXing.Windows.Compatibility;
+using static QRCoder.PayloadGenerator;
 
 
 namespace QRCodeMaker
@@ -310,6 +311,59 @@ namespace QRCodeMaker
             logoPictureBox.Image = null;
             backgroundColorPanel.BackColor = Color.White;
             colorPanel.BackColor = Color.White;
+        }
+
+        private void geoCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "geo:<latitude>,<longitude>";
+        }
+
+        private void emailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "MATMSG:TO:<email_address>;SUB:<subject>;BODY:<message>;;";
+
+        }
+
+        private void sMSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "SMSTO:< phone_number >:< message >";
+
+
+        }
+
+        private void callToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "TEL:<phone_number>";
+        }
+
+        private void contactToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "BEGIN:VCARD\r\nVERSION:3.0\r\nN:<last_name>;<first_name>;;;\r\nFN:<first_name> <last_name>\r\nORG:<organization>\r\nTEL:<phone_number>\r\nEMAIL:<email_address>\r\nEND:VCARD\r\n";
+        }
+
+        private void eventToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "BEGIN:VEVENT\r\nSUMMARY:<event_title>\r\nDTSTART:<start_date_time>\r\nDTEND:<end_date_time>\r\nLOCATION:<location>\r\nDESCRIPTION:<description>\r\nEND:VEVENT\r\n";
+        }
+
+        private void wPAWPA2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "WIFI:T:WPA;S:MyNetworkName;P:MyPassword;;\r\n";
+        }
+
+        private void wEPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "WIFI:T:WEP;S:MyNetworkName;P:MyPassword;;\r\n";
+        }
+
+        private void hiddenWPAWPA2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "WIFI:T:WPA;S:HiddenNetworkName;P:MyPassword;H:true;;\r\n";
+        }
+
+        private void openNetworkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stringBox.Text = "WIFI:T:nopass;S:OpenNetworkName;;\r\n";
         }
     }
 }
